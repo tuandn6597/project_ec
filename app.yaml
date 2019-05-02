@@ -1,2 +1,9 @@
 runtime: nodejs
 env: flex
+env_variables:
+  MEMCACHE_URL: redis-16693.c124.us-central1-1.gce.cloud.redislabs.com:16693
+  # If you are using a Memcached server with SASL authentiation enabled,
+  # fill in these values with your username and password.
+  MEMCACHE_USERNAME: khoale9098@gmail.com
+  MEMCACHE_PASSWORD: Tuan6597@
+# [END gae_flex_redislabs_memcache_yaml]

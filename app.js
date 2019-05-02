@@ -6,10 +6,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var flash = require('connect-flash');
 var session = require('express-session');
-var sessionStore = new session.MemoryStore;
+//var sessionStore = new session.MemoryStore;
 var bodyParser = require('body-parser')
 var passport =  require('passport');
 var expressSession = require('express-session');
+var sessionStore = require("connect-memcached")(expressSession);
 //
 var pokestopRouter = require('./routes/pokestop');
 var indexRouter = require('./routes/index');
@@ -32,10 +33,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Flash- mess
 app.use(session({
   cookie: { maxAge: 60000*60*60 },
-  store: sessionStore,
+  store: sessionStore({
+    hosts:['redis-16693.c124.us-central1-1.gce.cloud.redislabs.com:16693'],
+    secret: 'secret'
+  }),
   saveUninitialized: true,
   resave: 'true',
   secret: 'secret'
+  
 }));
 app.use(flash());
 
