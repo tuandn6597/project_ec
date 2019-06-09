@@ -5,7 +5,7 @@ function hideAndshowPokemon(a,b){
       var pokemonPosLng=value.getPosition().lng();
       var loc={lat:pokemonPosLat,lng:pokemonPosLng};
       var n = arePointsNear({lat:a,lng:b}, loc, 1000);
- 
+      value.setVisible(true);
       if(n)
       {
         value.setVisible(true);

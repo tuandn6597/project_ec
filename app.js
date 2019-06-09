@@ -1,3 +1,5 @@
+
+
 require('./bin/database');
 var createError = require('http-errors');
 var express = require('express');
@@ -6,11 +8,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var flash = require('connect-flash');
 var session = require('express-session');
-//var sessionStore = new session.MemoryStore;
+var sessionStore = new session.MemoryStore;
 var bodyParser = require('body-parser')
 var passport =  require('passport');
 var expressSession = require('express-session');
-var sessionStore = require("connect-memcached")(expressSession);
 //
 var pokestopRouter = require('./routes/pokestop');
 var indexRouter = require('./routes/index');
@@ -18,7 +19,14 @@ var usersRouter = require('./routes/users');
 var pokesRouter=require('./routes/pokemon');
 var itemsRouter=require('./routes/item');
 var bagsRouter=require('./routes/bags');
-
+var adsRouter=require('./routes/ads');
+var accountRouter=require('./routes/account');
+var PokemonRouter=require('./routes/adminpokemon');
+var adminItemsRouter=require('./routes/adminItem')
+var adminPokestop=require('./routes/adminPokestop');;
+var vnpayRouter=require('./routes/vnpay');
+var nganluongRouter=require('./routes/nganluong');
+var braintreeRouter=require('./routes/braintree');
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,18 +37,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//
+
 // Flash- mess
 app.use(session({
   cookie: { maxAge: 60000*60*60 },
-  store: sessionStore({
-    hosts:['redis-16693.c124.us-central1-1.gce.cloud.redislabs.com:16693'],
-    secret: 'secret'
-  }),
+  store: sessionStore,
   saveUninitialized: true,
   resave: 'true',
   secret: 'secret'
-  
 }));
 app.use(flash());
 
@@ -68,6 +72,17 @@ app.use('/pokemon',pokesRouter);
 app.use('/', pokestopRouter);
 app.use('/items',itemsRouter);
 app.use('/bags',bagsRouter);
+app.use('/admin/ads',adsRouter);
+app.use('/admin/account',accountRouter);
+app.use('/admin/pokemon',PokemonRouter);
+app.use('/admin/item',adminItemsRouter);
+app.use('/admin/pokestop',adminPokestop);
+app.use('/', nganluongRouter);
+app.use('/braintree', braintreeRouter);
+
+
+app.use('/ads',adsRouter);
+app.use('/vnpay',vnpayRouter);
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');

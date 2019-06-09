@@ -6,7 +6,7 @@ var UserSchema = new Schema({
 	username: String,
 	password: String,
 	email: String,
-	status : Boolean,
+	status : {type: Boolean, 'default': true},
 	level: Number,
 	money: Number,
 	createdOn: { type: Date, 'default': Date.now },

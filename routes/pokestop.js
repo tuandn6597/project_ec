@@ -137,4 +137,21 @@ router.get('/lol', function(req, res, next) {
         });
     })
 })
+router.get("/tangtien",(req,res,next)=>{
+    User.findOne({ _id: req.user._id})
+        .exec(function(err, usr){
+            usr.money += 1000;
+            usr.status = false;
+            usr.save(function(err){
+                if(err) throw err;
+                res.status(200).json({ status: true });
+            })
+        })
+})
+router.get("/kt",(req,res,next)=>{
+    User.find({_id:req.user._id},(err,users)=>{
+      if(err) throw err;
+      res.json(users);
+    })
+})
 module.exports = router;

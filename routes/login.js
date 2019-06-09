@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose'); 
-
+var User = require('../models/user.js');
 // Sign in
 module.exports = function(passport){
     router.get('/login', function(req, res) {
@@ -16,8 +16,8 @@ module.exports = function(passport){
 		res.render('sign-up',{message: req.flash('message')});
 	})
 	router.post('/signup', passport.authenticate('signup', {successRedirect: '/',failureRedirect: '/signup',failureFlash : true }));
-	router.get('/',isLoggedIn, function(req, res ){
-		res.render('index');
+	router.get('/',isLoggedIn, function(req, res ){	
+			res.render('index');	
 	})
 	//logout
 	router.get('/signout', function(req, res) {

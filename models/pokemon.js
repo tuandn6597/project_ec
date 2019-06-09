@@ -7,6 +7,7 @@ var pokeSchema = new Schema({
     namePokemon: String,
     imagePokemon: String,
     CP: Number,
+    upgrade: ObjectId,
     typePokemons: { type: ObjectId, ref:'TypePokemon'}
 })
 

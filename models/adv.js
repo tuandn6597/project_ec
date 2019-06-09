@@ -5,7 +5,8 @@ var adv = new Schema({
     email: String,
     phone: String,
     link: String,
-    image: String
+    image: String,
+    status:Boolean
 })
 var Adv = mongoose.model('Adv', adv);
 module.exports = Adv;

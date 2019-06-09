@@ -9,7 +9,7 @@ $(document).ready(function() {
     //     }
     // })
 
-
+    
 
     const $form = $('#submitAdv');
     $form.on('submit', submitHandler);
@@ -29,4 +29,6 @@ $(document).ready(function() {
             data: formData
         })
     }
+
+    
 })
