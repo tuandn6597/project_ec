@@ -12,7 +12,7 @@ function checkIndex(array, type){
         poke= response;
     }
   });
-  console.log(array);
+ // console.log(array);
   for(let value of poke){
     for(let po of array){
       if(value._id == po._id._id){
@@ -35,7 +35,7 @@ function checkIndex(array, type){
       }
      
     }
-    console.log(check);
+   // console.log(check);
     if(check == 0){
         var content = `<div class="box row" value="${value._id}" style="opacity: 0.3;">
                     <div class="col-md-3">
@@ -178,7 +178,7 @@ $( document ).ready(function() {
         // user name, level, image
         var contact = [];
         if(user.sex){
-            contact1 = `<img src="images/user1.png", alt="user image" >`;
+            contact1 = `<img src="images/User1.png", alt="user image" >`;
         }
         else{
             contact1 = `<img src="images/user2.png", alt="user image">`;

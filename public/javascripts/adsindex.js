@@ -15,8 +15,8 @@ $(document).ready(function(){
 })
 function hideFB() {
   $.getJSON('/kt',function(data){
-    console.log(data[0]);
-    console.log(data[0].status);
+   // console.log(data[0]);
+  //  console.log(data[0].status);
     users= data;
     if(data[0].status === false){
       $('#fb').css("display","none");
