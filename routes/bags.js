@@ -211,29 +211,26 @@ router.post('/upgradePoke', async(req, res) => {
             populate: { path: 'pokemons._id' }
         })
     usr.bag.pokemons.forEach(function(element, index) {
-        console.log(element._id._id + "- " + element.amount);
-        if (element._id._id == req.body._idPoke && element.amount > 1 && element._id.upgrade != "") {
+      
+        if (element._id._id == req.body._idPoke && element.amount > 1) {
             check= 1;
-            console.log(check);
-            console.log(element);
-            console.log(element._id._id);
+          
             var poke = { _id: element._id.upgrade, amount: 1 };
-            console.log(poke);
+         
             var tag = 0;
-            console.log(usr.bag._id);
+         
             Bag.findOne({ _id: usr.bag._id }).then(bg => {
                 bg.pokemons[index].amount -= 2;
-                console.log(bg.pokemons[index].amount);
+            
                 if (bg.pokemons[index].amount == 0) {
                     bg.pokemons.splice(index, 1);
                 }
                 bg.pokemons.forEach(function(poke2, index2) {
-                    console.log(poke2._id._id);
-                    console.log(element._id.upgrade);
+                
                     if (poke2._id._id.equals(element._id.upgrade)) {
                         bg.pokemons[index2].amount += 1;
                         tag = 1;
-                        console.log(bg.pokemons[index2].amount);
+                    
                     }
                 })
                 if (tag == 0) {
@@ -245,7 +242,7 @@ router.post('/upgradePoke', async(req, res) => {
             })
         }
     })
-    console.log(check);
+ 
     if(check === 0){
         res.status(200).json({ messenger: 'Chưa đủ Pokemon hoặc đã tiến hóa cấp cao nhất' });
     }
