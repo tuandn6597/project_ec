@@ -141,8 +141,8 @@ router.post('/pay', function(req, res) {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:3000/bags/success",
-            "cancel_url": "http://localhost:3000/bags/cancel"
+            "return_url": "https://pokemon-ec.herokuapp.com/bags/success",
+            "cancel_url": "https://pokemon-ec.herokuapp.com/bags/cancel"
         },
         "transactions": [{
             "item_list": {
